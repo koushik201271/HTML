@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open World RPG</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        canvas {
+            display: block;
+            background: #555;
+        }
+        .ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div class="ui">
+        <p>Health: <span id="health">100</span></p>
+        <p>Stamina: <span id="stamina">100</span></p>
+        <p>Items: <span id="items">0</span></p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const healthDisplay = document.getElementById("health");
+        const staminaDisplay = document.getElementById("stamina");
+        const itemsDisplay = document.getElementById("items");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let player = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            size: 20,
+            color: "blue",
+            speed: 5,
+            health: 100,
+            stamina: 100,
+            items: 0
+        };
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.size, player.size);
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function updateUI() {
+            healthDisplay.textContent = player.health;
+            staminaDisplay.textContent = player.stamina;
+            itemsDisplay.textContent = player.items;
+        }
+
+        function movePlayer(e) {
+            if (e.key === "ArrowUp") player.y -= player.speed;
+            if (e.key === "ArrowDown") player.y += player.speed;
+            if (e.key === "ArrowLeft") player.x -= player.speed;
+            if (e.key === "ArrowRight") player.x += player.speed;
+        }
+
+        window.addEventListener("keydown", movePlayer);
+
+        function gameLoop() {
+            clearCanvas();
+            drawPlayer();
+            updateUI();
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
