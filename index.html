@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<head>
+<html>
 
-        <title>Odd Even program</title>
-</head>
 <body>
-        <h1> JavaScript Odd Even program </h1>
-    <script>
-            var n = 9999999;
-              if (n%2 == 0){
-                document.write (n + "is a even number , ")
-
-                           }
-              else
-                document.write (n + "ïs a odd number , ")
-    </script>
+    <h2>JavaScript Array Sort </h2>
+      <p> Ciick the button to sort the array in ascending order.</p>
+         <button onclick="ascending()" >Ascending order </button>
+           <button onclick="desceding()">Descending order</button>
+             <p id="result"></p>
+             <script>
+    var points =[40,200,145,1,23,34,54,64,72,10,17,29,39,74,84,33,94,84,0,100,38,189]
+        document.getElementById("result").innerHTML = points;
+            function ascending{
+              points.sort(function(a,b) { return a - b });
+                document.getElementById(f(result)).innerHTML = points;\
+                 }
+    function desceding(){
+        points.sort (function(a,b){return b - a});
+            document.getElementById("result")
+    }             
+             </script>  
     
 </body>
-</html>  
+</html>
