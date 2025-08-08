@@ -1,31 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
 <body>
-  <h2>JavaScript String Methods Examples</h2>
-  <ul id="string_methods"></ul>
-
-  <script>
-    const str = "Hello, JavaScript!";
-    const examples = [
-      `1. Length: ${str.length}`,
-      `2. toUpperCase: ${str.toUpperCase()}`,
-      `3. toLowerCase: ${str.toLowerCase()}`,
-      `4. includes('Java'): ${str.includes('Java')}`,
-      `5. indexOf('Script'): ${str.indexOf('Script')}`,
-      `6. slice(7, 17): ${str.slice(7, 17)}`,
-      `7. replace('JavaScript', 'World'): ${str.replace('JavaScript', 'World')}`,
-      `8. split(', '): ${str.split(', ')}`,
-      `9. startsWith('H'): ${str.startsWith('H')}`,
-      `10. trim: ${'    Hello    '.trim()}`
-    ];
-
-    const ul = document.getElementById("string_methods");
-    ul.style.listStyle = "none";
-    
-    examples.forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      ul.appendChild(li);
-    });
-  </script>
+    <div class="login-box">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="password">
+        <button onclick="handleLogin()">Login</button>
+        <div class="message" id="massage"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
+</html>
