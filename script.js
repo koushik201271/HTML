@@ -1,11 +1,23 @@
-const userData = [
-    { username:"koushik", password:"201271" },
-    { username: "arjo",password:"707012" }
-];
+function clearScreen(){
+    document.getElementById("result").value ="";
 
+}
 
-function checkCredentials (username,password){
-    return new Promise((resolve, reject)) => {
-        setTimeout(())
+function setScreenValue(value) {
+    document.getElementById("result").value += value;
+
+}
+function calculateResult() {
+    const resultElement = document.getElementById("result");
+    const expression = resultElement.value.trim();
+
+    if (expression === ''){
+        resultElement.value = 'Enter an expression';
+        return;
+    }
+    try{
+        resultElement.value = eval(expression)
+    } catch (e) {
+        resultElement.value = 'Invalid expression';
     }
 }
