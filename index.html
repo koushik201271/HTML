@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Clock</title>
+    <title>Stopwatch App</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="clock.png" type="image/x-icon">
 </head>
 <body>
-    <div class="clock-container">
-        <h1 id="clock"></h1>
+    <div class="stopwatch-container">
+        <h1>Stopwatch</h1>
+        <div class="time-display" id="timeDisplay">00:00:00</div>
+
+        <div class="buttons">
+            <button id="startBtn" class="start">Start</button>
+            <button id="pauseBtn" class="pause">Pause</button>
+            <button id="resetBtn" class="reset">Reset</button>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,19 +1,48 @@
-document.addEventListener("DOMContentLoaded", ()=>{
-  const clockElement = document.getElementById("clock");
+document.addEventListener("DOMContentLoaded", () => {
+    const timeDisplay = document.getElementById("timeDisplay");
+    const startBtn = document.getElementById("startBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const resetBtn = document.getElementById("resetBtn");
 
-  function updateClock(){
-    const now = new Date();
-    let hours = now.getHours();
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
+    let hours = 0, minutes = 0, seconds = 0;
+    let timerInterval = null;
+    let isRunning = false;
 
-    const amPM = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12;
+    function updateTime() {
+        seconds++;
+        if (seconds == 60) {
+            seconds = 0;
+            minutes++;
+        }
+        if (minutes == 60) {
+            minutes = 0;
+            hours++;
+        }
 
-    clockElement.textContent = `${String(hours).padStart(2, "0")}:${minutes}:${seconds} ${amPM}`;
-  }
+        hours = String(hours).padStart(2, "0");
+        minutes = String(minutes).padStart(2, "0");
+        seconds = String(seconds).padStart(2, "0");
+         timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+    }
 
-  setInterval(updateClock, 1000);
+    startBtn.addEventListener("click", () =>{
+        if (!isRunning) {
+            timerInterval = setInterval(updateTime, 1000);
+            isRunning = true;
+        }
+    });
 
-  updateClock();
+    pauseBtn.addEventListener("click", () =>{
+        clearInterval(timerInterval);
+        isRunning = false;
+    });
+
+    resetBtn.addEventListener("click", () =>{
+        clearInterval(timerInterval);
+        isRunning = false;
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+        timeDisplay.textContent = "00:00:00";
+    });
 });
