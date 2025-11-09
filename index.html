@@ -1,282 +1,553 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koushik Goshwami - Protfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>How to Open a Bank Account — Demo</title>
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --accent: #0ea5a4;
+            --accent-dark: #047c78;
+            --success: #16a34a;
+            --danger: #ef4444;
+            --radius: 12px;
+            font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+        }
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="imane/loho.png" type="image/x-icon">
+        * {
+            box-sizing: border-box
+        }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #eef2f7 0%, #f6f8fb 100%);
+            color: #0f1724
+        }
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        .wrap {
+            max-width: 1000px;
+            margin: 32px auto;
+            padding: 20px
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-   
-     <meta property="og:title" content="Wasim Rahman - Portfolio" />
-     <meta property="og:description" content="Explore my projects, skills, and professional journey as Web Developer." />
-     <meta property="og:type" content="website" />
-     <meta property="og:url" content="" />
-     <meta property="og:image" content="" />
+        header {
+            display: flex;
+            gap: 16px;
+            align-items: center
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 18px;
+            margin-top: 16px
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: 0 6px 18px rgba(10, 20, 30, 0.06)
+        }
+
+        /* left column: tutorial and form */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start
+        }
+
+        .step .num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700
+        }
+
+        .step h3 {
+            margin: 0;
+            font-size: 15px
+        }
+
+        .step p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        form .row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px
+        }
+
+        label {
+            font-size: 13px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 6px
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=number],
+        input[type=date],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e6eef6;
+            background: transparent
+        }
+
+        textarea {
+            min-height: 70px
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(15, 23, 36, 0.06);
+            color: var(--muted)
+        }
+
+        .small {
+            padding: 6px 8px;
+            font-size: 13px
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .right .card {
+            position: sticky;
+            top: 20px
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .check {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .check input {
+            width: 16px;
+            height: 16px
+        }
+
+        .preview {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 13px
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            display: none
+        }
+
+        .modal .dialog {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            width: 600px;
+            max-width: 95%
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+            margin-top: 12px
+        }
+
+        @media (max-width:980px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .right .card {
+                position: static
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-    <nav class="nav-profile">
-        <div class="nav-profile-head">
-            <img class="nav-profile" src="image/profile-icon.png" alt="profile">
-            <h1>Koushik Goshwami</h1>
-        </div>
-
-        <div class="menu-toggle" id="menu-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-
-        <ul class="nav-item" id="nav-item">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#container">Container</a></li>
-        </ul>
-    </nav>
-    <!--banner-->
-    <div class="banner-container">
-
-   <div>
-
-   <img class="banner-img" src="image/profile.jpg" alt="Peofile photo">
-
-       </div>
-
-       <div class="banner-head">
-           <p>Hello , I am </p>
-           <h1>Koushik Goshwami</h1>
-           <h2>Web Developer</h2>
-           <div class="banner-btn">
-            <button class="btn-view">View Resume</button>
-            <button class="btn-download">Download Resume</button>
-            
-        </div> 
-
-          <div class="banner-icon">
-             <a href="#"><i class="fa-brands fa-github"></i></a>
-             <a href="#"><i class="fa-solid fa-envelope"></i></a>
-             <a class="#"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
-              </div>
-         </div>
-</header>
-<main>
-    <!--about section-->
-    <section class="about-section" id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <ing scr="image/about.jpg"alt="about-img">
-                <div class="about-text">
-                    <p>
-                        I am <strong>KOUSHIK GOSHWAMI</strong>, a passionate <b>Web Developer</b> with expertise in building dynamic and responsive websites. 
-                        I enjoy solving real-world problems with clean code, modern design, and user-focused solutions.
-                         My goal is to continuously learn, improve my skills, and contribute to impactful projects.
-                    </p>
-                    <p> 
-                       Beyond coding, I enjoy collaborating with teams, exploring new technologies, and sharing knowledge that empowers others.
-                    </p>
-                    <p>
-                        I specialize in front-end and back-end development, with hands-on experience in <b>HTML, CSS, JavaScript, React, Node.js, and databases</b>.
-                    </p>
-                    <p>
-                        I believe in continuous growth – staying updated with industry trends, experimenting with new frameworks, and enhancing my coding practices.
-                    
-                    </p>
-                    <p>
-                       Outside of development, I enjoy <b>reading tech blogs, mentoring beginners, and contributing to open-source projects</b> that create real-world impact. 
-                    </p>
-                </div>
-            </ing>
-        </div>
-    </section>
-
-
-    <!--skills Section-->
-
-    <section class="skills-section" id="skills">
-        <h2 class="section-title">My Skills</h2>
-        <div class="skills-container">
-            <div class="skill-card">
-                <i class="fa-braands fa-html5"></i>
-                <h3>HTML5</h3>
-                <p>Structuring and semantic markup with best practices.</p>
-                     <div class="skill-card">
-                         <i class="fa-brands fa-css3-alt"></i>
-                             <h3>CSS3</h3>
-                                 <p>Responsive design, animations, and styling expertise.</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                         <i class="fa-brands fa-square-js"></i>
-                             <h3>JavaScript</h3>
-                                 <p>Building interactive and dynamic web applications.</p>
-                    </div>
-
-                    <div class="skill-card">
-                         <i class="fa-brands fa-react"></i>
-                             <h3>ReactJS</h3>
-                                 <p>Developing modern single-page applications.</p>
-                    </div>
-
-                     <div class="skill-card">
-
+    <div class="wrap">
+        <header>
+            <div class="logo">BA</div>
+            <div>
+                <h1>How to Open a Bank Account — Guided Demo</h1>
+                <p class="lead">Interactive walkthrough + mock application form (client-side only). Use this to explain
+                    the process or prototype a front-end flow.</p>
             </div>
-        </div>
-    </section>
-    <!--projects section-->
-    <section class="projects-section" id="projects">
-        <h2 class="section-title">My Projects</h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <img src="image/project-1.jpg" alt="Project 1">
-                <h3>Finance Made Easy</h3>
-                <p>A personal finance management app that helps users track expenses, set budgets, and visualize spending patterns
-                    with interactive charts.</p>
-                <a href="#" class="btn-project">View Project</a>
-            </div>
+        </header>
 
-            <div class="project-card">
-                <img src="image/project-2.jpg" alt="Project 2">
-                <h3>Boxing Training</h3>
-                <p>A fitness web platform providing workout schedules, training videos, and progress tracking for boxing
-                    enthusiasts.</p>
-                <a href="#" class="btn-project">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <img src="image/project-3.jpg" alt="Project 3">
-                <h3>Find the Tour</h3>
-                <p>A travel booking system that allows users to explore destinations, compare packages, and book tours seamlessly
-                    online.</p>
-                <a href="#" class="btn-project">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <img src="image/project-4.jpg" alt="Project 4">
-                <h3>Shop Your Shoe</h3>
-                <p>An e-commerce shoe store with product filtering, cart functionality, and secure checkout powered by Node.js and
-                    MongoDB.</p>
-                <a href="#" class="btn-project">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <img src="image/project-5.png" alt="Project 5">
-                <h3>Medical Aid Online</h3>
-                <p>A healthcare platform for booking doctor appointments, accessing medical records, and connecting with specialists
-                    online.</p>
-                <a href="#" class="btn-project">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <img src="image/project-6.jpg" alt="Project 6">
-                <h3>Pocket NFT</h3>
-                <p>A blockchain-based marketplace for creating, buying, and selling NFTs with wallet integration and real-time price
-                    updates.</p>
-                <a href="#" class="btn-project">View Project</a>
-            </div>
-        </div>
-    </section>
-       <!--Contact Section-->
-
-    <section class="content-section" id="content">
-        <h2 class="section-title" >Contact Me</h2>
-        <div class="content-container">
-            <div class="content-info"><
-                <p><i class="fa-solid fa-envelope"></i> wasimrahman@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> +880 123 456 7890</p>
-                <p><i class="fa-solid fa-location-dot"></i> Dhaka, Bangladesh</p>
-                <div class="contact-social">
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-snapchat"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-
-                </div>
-
-            </div>
-            <from  class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn-submit">Send Message</button>
-            </from>
-        </div>
-    </section>
-</main>
-           <!--footer section-->
-                <footer class="footer">
-                    <div class="footer-row">
-                        <div class="footer-col-head">
-                            <div class="footer-col">
-                                <h4>Info</h4>
-                                <ul class="links">
-                                    <li><a href="#about">About</a></li>
-                                    <li><a href="#skills">Skills</a></li>
-                                    <li><a href="#projects">Projects</a></li>
-                                    <li><a href="#contact">Contact</a></li>
-                                    </ul>
+        <div class="grid">
+            <main class="card">
+                <section>
+                    <h2 style="font-size:16px;margin-top:0">Quick steps to open a bank account</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="num">1</div>
+                            <div>
+                                <h3>Choose the account type</h3>
+                                <p>Decide between a savings, current/checking, or fixed deposit account based on your
+                                    needs.</p>
                             </div>
-                            <div class="footer-col">
-                                <h4>Explore</h4>
-                                <ul class="links">
-                                    <li><a href="#">Latest Works</a></li>
-                                    <li><a href="#">Case Studies</a></li>
-                                    <li><a href="#">Open Source</a></li>
-                                    <li><a href="#">Community</a></li>
-                                    <li><a href="#">Tuch Blog</a></li>
-                                    </ul>
                         </div>
-                        <div class="footer-col">
-                            <h4>Legal</h4>
-                            <ul class="links">
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms of use</a></li>
-                                <li><a href="#">Cookies</a></li>
-                                <li><a href="#">Disclaimer</a></li>
-                                </ul>
+                        <div class="step">
+                            <div class="num">2</div>
+                            <div>
+                                <h3>Prepare required documents</h3>
+                                <p>Typically: government ID (passport/ID card/driving license), proof of address
+                                    (utility bill/rental agreement), passport photo, and sometimes proof of income.</p>
+                            </div>
                         </div>
-                        <div class="footer-col">
-                            <h4>Communect</h4>
-                            <ul class="links">
-                                <li><a href="#">LinkedIn</a></li>
-                                <li><a href="#">GitHub</a></li>
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="#">Facebook</a></li>
-                                <li><a href="#">Instragram</a></li>
-                                </ul>
-                           </div>
-                     </div>  
-                     <div class="footer-col-newsletter">
-                        <h4>Newsletter</h4>
-                        <p>Subscribe for updates on new projects, tutorials, and tips.</p>
-                        <form action="#">
-                            <input type="email" placeholder="Your Email" required>
-                            <button type="submit">Subscribe</button>
+                        <div class="step">
+                            <div class="num">3</div>
+                            <div>
+                                <h3>Fill the application</h3>
+                                <p>Complete the form (online or at a branch). Provide correct personal details and
+                                    upload/attach documents.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="num">4</div>
+                            <div>
+                                <h3>Initial deposit & verification</h3>
+                                <p>Some banks require a minimum opening deposit. Bank will verify your documents and may
+                                    conduct KYC checks.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="num">5</div>
+                            <div>
+                                <h3>Receive account details</h3>
+                                <p>Once approved, you'll get account number, debit card, and online banking access
+                                    instructions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                        </form>
-                        <div class="icon">
-                            <a href="#"><i class="fa-brands fa-github"></i></a>
-                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <hr style="margin:16px 0;border:none;border-top:1px solid #eef2f7" />
+
+                <section>
+                    <h2 style="font-size:16px">Mock Application Form</h2>
+                    <form id="appForm">
+                        <div class="row">
+                            <div style="flex:1">
+                                <label for="fullname">Full name</label>
+                                <input id="fullname" type="text" placeholder="Jane Doe" required />
+                            </div>
+                            <div style="flex:1">
+                                <label for="dob">Date of birth</label>
+                                <input id="dob" type="date" required />
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <div style="flex:1">
+                                <label for="idtype">ID type</label>
+                                <select id="idtype">
+                                    <option>Passport</option>
+                                    <option>National ID</option>
+                                    <option>Driver's License</option>
+                                </select>
+                            </div>
+                            <div style="flex:1">
+                                <label for="idnum">ID number</label>
+                                <input id="idnum" type="text" placeholder="ID / Passport number" required />
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <div style="flex:2">
+                                <label for="address">Address</label>
+                                <textarea id="address" placeholder="Street, City, Country" required></textarea>
+                            </div>
+                            <div style="flex:1">
+                                <label for="phone">Phone</label>
+                                <input id="phone" type="text" placeholder="+8801..." required />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div style="flex:1">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" placeholder="you@example.com" required />
+                            </div>
+                            <div style="flex:1">
+                                <label for="atype">Account type</label>
+                                <select id="atype">
+                                    <option value="savings">Savings</option>
+                                    <option value="current">Current/Checking</option>
+                                    <option value="fixed">Fixed Deposit</option>
+                                </select>
+                            </div>
+                            <div style="flex:1">
+                                <label for="deposit">Initial deposit</label>
+                                <input id="deposit" type="number" min="0" step="0.01" value="0" />
+                            </div>
+                        </div>
+
+                        <div style="margin-top:6px">
+                            <label class="muted">Upload ID (mock, client-side preview)</label>
+                            <input id="file" type="file" accept="image/*,.pdf" />
+                            <div id="filePreview" class="preview" style="display:none"></div>
+                        </div>
+
+                        <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+                            <input id="agree" type="checkbox" />
+                            <label for="agree" class="muted">I confirm that the information is true and I agree to the
+                                bank's terms.</label>
+                        </div>
+
+                        <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+                            <button type="button" class="btn ghost" id="saveDraft">Save Draft</button>
+                            <button type="button" class="btn ghost" id="previewBtn">Preview</button>
+                            <button type="submit" class="btn">Submit Application</button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+
+            <aside class="right">
+                <div class="card">
+                    <h3 style="margin-top:0">Required documents</h3>
+                    <div class="checklist">
+                        <label class="check"><input type="checkbox" checked disabled /> Government-issued photo
+                            ID</label>
+                        <label class="check"><input type="checkbox" checked disabled /> Proof of address (utility
+                            bill)</label>
+                        <label class="check"><input type="checkbox" checked disabled /> Passport photo</label>
+                        <label class="check"><input type="checkbox" checked disabled /> Initial deposit (if
+                            required)</label>
+                    </div>
+
+                    <hr style="margin:12px 0;border:none;border-top:1px solid #eef2f7" />
+
+                    <h4>Application summary</h4>
+                    <div id="summary" class="preview">No draft saved.</div>
+
+                    <div style="margin-top:12px;display:flex;gap:8px;justify-content:space-between">
+                        <button class="btn small ghost" id="exportJson">Export JSON</button>
+                        <button class="btn small" id="clearDraft">Clear Draft</button>
+                    </div>
                 </div>
+            </aside>
+        </div>
 
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Koushik Goshwami. All rights reserved.</p>
+        <!-- modal -->
+        <div id="modal" class="modal">
+            <div class="dialog">
+                <h3>Application Preview</h3>
+                <div id="modalContent" style="white-space:pre-wrap;margin-top:8px;color:#111"></div>
+                <div class="row-actions">
+                    <button class="btn ghost" id="modalClose">Close</button>
+                    <button class="btn" id="modalConfirm">Confirm & Submit</button>
                 </div>
-        </footer>
-        <secript src="script.js"></secript>
+            </div>
+        </div>
+    </div>
 
-        <script src="https://kit.fontawesome.com/2c2c3a511e.js" crossorigin="anonymous"></script>
+    <script>
+        // client-side behavior only — no real bank interaction
+        const form = document.getElementById('appForm');
+        const fileInput = document.getElementById('file');
+        const filePreview = document.getElementById('filePreview');
+        const summaryEl = document.getElementById('summary');
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modalContent');
+
+        const STORAGE_KEY = 'bank_app_demo_v1';
+
+        // load draft
+        function loadDraft() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const data = JSON.parse(raw);
+                    document.getElementById('fullname').value = data.fullname || '';
+                    document.getElementById('dob').value = data.dob || '';
+                    document.getElementById('idtype').value = data.idtype || 'Passport';
+                    document.getElementById('idnum').value = data.idnum || '';
+                    document.getElementById('address').value = data.address || '';
+                    document.getElementById('phone').value = data.phone || '';
+                    document.getElementById('email').value = data.email || '';
+                    document.getElementById('atype').value = data.atype || 'savings';
+                    document.getElementById('deposit').value = data.deposit || 0;
+                    document.getElementById('agree').checked = !!data.agree;
+                    if (data.fileName) {
+                        filePreview.style.display = 'block';
+                        filePreview.textContent = 'Saved file: ' + data.fileName;
+                    }
+                    updateSummary();
+                }
+            } catch (e) { console.warn('load draft', e) }
+        }
+
+        function saveDraft() {
+            const payload = collectForm(true);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+            updateSummary(payload);
+            alert('Draft saved locally.');
+        }
+
+        function clearDraft() {
+            if (confirm('Clear saved draft?')) { localStorage.removeItem(STORAGE_KEY); form.reset(); filePreview.style.display = 'none'; summaryEl.textContent = 'No draft saved.'; }
+        }
+
+        function collectForm(forDraft = false) {
+            const data = {
+                fullname: document.getElementById('fullname').value.trim(),
+                dob: document.getElementById('dob').value,
+                idtype: document.getElementById('idtype').value,
+                idnum: document.getElementById('idnum').value.trim(),
+                address: document.getElementById('address').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                atype: document.getElementById('atype').value,
+                deposit: Number(document.getElementById('deposit').value) || 0,
+                agree: document.getElementById('agree').checked
+            };
+            if (forDraft && window._lastFileName) data.fileName = window._lastFileName;
+            return data;
+        }
+
+        function updateSummary(payload) {
+            const p = payload || collectForm(true);
+            if (!p || (!p.fullname && !p.idnum)) {
+                summaryEl.textContent = 'No draft saved.'; return;
+            }
+            summaryEl.textContent = `${p.fullname} — ${p.atype} • Deposit: ${p.deposit}\nPhone: ${p.phone} • Email: ${p.email}`;
+        }
+
+        // file preview (client-side only)
+        fileInput.addEventListener('change', (e) => {
+            const f = e.target.files[0];
+            if (!f) return; window._lastFileName = f.name;
+            filePreview.style.display = 'block';
+            filePreview.textContent = `Selected: ${f.name} (${Math.round(f.size / 1024)} KB)`;
+        });
+
+        document.getElementById('saveDraft').addEventListener('click', saveDraft);
+        document.getElementById('clearDraft').addEventListener('click', clearDraft);
+        document.getElementById('exportJson').addEventListener('click', () => {
+            const data = collectForm(true);
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'bank_application.json'; a.click(); URL.revokeObjectURL(a.href);
+        });
+
+        document.getElementById('previewBtn').addEventListener('click', () => {
+            const data = collectForm();
+            if (!data.fullname || !data.idnum) { alert('Please enter at least your full name and ID number to preview.'); return; }
+            modalContent.textContent = buildPreviewText(data);
+            modal.style.display = 'flex';
+        });
+
+        document.getElementById('modalClose').addEventListener('click', () => modal.style.display = 'none');
+        document.getElementById('modalConfirm').addEventListener('click', () => {
+            modal.style.display = 'none';
+            submitApplication();
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = collectForm();
+            if (!data.agree) { alert('You must agree to the terms before submitting.'); return; }
+            // simple validation
+            if (!data.fullname || !data.idnum || !data.email) { alert('Please fill required fields.'); return; }
+            if (!confirm('Submit application? (This demo stores data in localStorage only)')) return;
+            submitApplication();
+        });
+
+        function submitApplication() {
+            const data = collectForm(true);
+            // simulate server-side: store in localStorage 'submissions' list
+            try {
+                const raw = localStorage.getItem('bank_submissions_v1');
+                const arr = raw ? JSON.parse(raw) : [];
+                arr.push(Object.assign({ submittedAt: new Date().toISOString() }, data));
+                localStorage.setItem('bank_submissions_v1', JSON.stringify(arr));
+                localStorage.removeItem(STORAGE_KEY); // clear draft
+                alert('Application submitted (demo). Stored locally as a submission.');
+                form.reset(); filePreview.style.display = 'none'; summaryEl.textContent = 'No draft saved.';
+            } catch (e) { console.error(e); alert('Error saving submission locally.'); }
+        }
+
+        function buildPreviewText(d) {
+            return `Full name: ${d.fullname}\nDOB: ${d.dob}\nID: ${d.idtype} ${d.idnum}\nAddress: ${d.address}\nPhone: ${d.phone}\nEmail: ${d.email}\nAccount type: ${d.atype}\nInitial deposit: ${d.deposit}`;
+        }
+
+        // initialize
+        loadDraft();
+    </script>
 </body>
+
 </html>
