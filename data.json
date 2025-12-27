@@ -1,0 +1,82 @@
+[
+    {
+        "question": "2",
+        "answer": "3"
+    },
+    {
+        "question": "What is a variable?",
+        "answer": "A container for storing data"
+    },
+    {
+        "question": "What is a list?",
+        "answer": "A collection of items"
+    },
+    {
+        "question": "What is a tuple?",
+        "answer": "An immutable collection"
+    },
+    {
+        "question": "What is a dictionary?",
+        "answer": "Key-value pair data structure"
+    },
+    {
+        "question": "What is a loop?",
+        "answer": "Used to repeat code"
+    },
+    {
+        "question": "What is if statement?",
+        "answer": "Used for decision making"
+    },
+    {
+        "question": "What is a function?",
+        "answer": "Reusable block of code"
+    },
+    {
+        "question": "What is an integer?",
+        "answer": "Whole number"
+    },
+    {
+        "question": "What is a float?",
+        "answer": "Decimal number"
+    },
+    {
+        "question": "What is a string?",
+        "answer": "Text data"
+    },
+    {
+        "question": "What is boolean?",
+        "answer": "True or False"
+    },
+    {
+        "question": "What does len() do?",
+        "answer": "Returns length"
+    },
+    {
+        "question": "What is input()?",
+        "answer": "Takes user input"
+    },
+    {
+        "question": "What is print()?",
+        "answer": "Displays output"
+    },
+    {
+        "question": "What is indexing?",
+        "answer": "Accessing elements by position"
+    },
+    {
+        "question": "What is slicing?",
+        "answer": "Extracting part of data"
+    },
+    {
+        "question": "What is None?",
+        "answer": "Represents no value"
+    },
+    {
+        "question": "What is a module?",
+        "answer": "A file containing Python code"
+    },
+    {
+        "question": "What is import?",
+        "answer": "Used to include modules"
+    }
+]
